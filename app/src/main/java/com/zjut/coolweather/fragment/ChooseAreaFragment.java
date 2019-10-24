@@ -1,5 +1,6 @@
 package com.zjut.coolweather.fragment;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.zjut.coolweather.MainActivity;
@@ -117,7 +119,9 @@ public class ChooseAreaFragment extends Fragment {
                 }
             }
         });
+        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.INTERNET}, 1);
         queryProvinces();
+
     }
 
     private void queryProvinces() {
@@ -180,6 +184,7 @@ public class ChooseAreaFragment extends Fragment {
         HttpUtil.sendHttpRequest(address, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
