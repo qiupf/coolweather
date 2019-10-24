@@ -225,6 +225,7 @@ public class WeatherActivity extends AppCompatActivity {
                 final String bingPic = response.body().string();
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
                 editor.putString("bing_pic", bingPic);
+                Log.e(TAG, bingPic);
                 editor.apply();
                 runOnUiThread(new Runnable() {
                     @Override
